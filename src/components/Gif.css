@@ -1,0 +1,16 @@
+.gifContainer {
+    border: 3px black solid;
+    /* margin: 30px; */
+    background-color: aqua;
+    text-align: center;
+    width: 260px;
+}
+
+.gifTitle {
+    font-size: 16px;
+    color: black;
+}
+
+.gifImage {
+    width: 250px;
+}

@@ -1,0 +1,11 @@
+.listOfGifsContainer {
+    background-color: blueviolet;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,
+            minmax(260px,
+                1fr));
+    gap: 16px;
+    width: 80vw;
+    min-height: 150vh;
+}
