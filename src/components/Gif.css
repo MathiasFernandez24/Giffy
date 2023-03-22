@@ -4,6 +4,7 @@
     background-color: aqua;
     text-align: center;
     width: 260px;
+    height: fit-content;
 }
 
 .gifTitle {

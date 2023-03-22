@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from 'react'
 const LazyLoad = () => {
     const [visible, setVisible] = useState(false)
     const elementRef = useRef()
-    const [boton, setBoton] = useState(true)
 
 
     useEffect(() => {
@@ -30,7 +29,6 @@ const LazyLoad = () => {
     return (
 
         <div ref={elementRef}>
-            <button onClick={() => setBoton(!boton)}>BOTONCITO</button>
             {visible ?
                 <p>
                     LAZY LOAD
