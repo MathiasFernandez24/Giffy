@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import useFetch from '../hooks/useFetch'
 import Gif from './Gif'
+import LazyLoad from './LazyLoad'
 import './ListOfGifs.css'
 
 
 const ListOfGifs = ({ search }) => {
+    const [page, setPage] = useState(0)
 
 
-
-    const { listaGif, loading, error, handleCancelRequest, nextPage } = useFetch(search)
+    const { listaGif, loading, error, handleCancelRequest, nextPage } = useFetch(search, page, setPage)
 
 
     return (
@@ -24,6 +25,7 @@ const ListOfGifs = ({ search }) => {
             </div>
             <br />
             <button onClick={nextPage}>Mas resultados</button>
+            <LazyLoad nextPage={nextPage} />
             <br />
         </>
     )

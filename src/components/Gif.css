@@ -3,8 +3,12 @@
     /* margin: 30px; */
     background-color: aqua;
     text-align: center;
-    width: 260px;
+    /* width: 260px; */
     height: fit-content;
+    /* max-height: 350px; */
+    /* overflow: hidden; */
+    /* align-items: center; */
+    /* justify-content: center; */
 }
 
 .gifTitle {
@@ -13,5 +17,5 @@
 }
 
 .gifImage {
-    width: 250px;
+    width: 100%;
 }

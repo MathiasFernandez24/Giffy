@@ -1,4 +1,5 @@
 import React from 'react'
+import LazyLoad from '../../components/LazyLoad'
 import ListOfGifs from '../../components/ListOfGifs'
 import './SearchResults.css'
 

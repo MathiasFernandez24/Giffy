@@ -1,18 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-const LazyLoad = () => {
+const LazyLoad = ({ nextPage }) => {
     const [visible, setVisible] = useState(false)
     const elementRef = useRef()
 
 
     useEffect(() => {
-        console.log("EFECTO");
         const onChange = (entries) => {
-            console.log("ENTRIES----> ", entries);
+            console.log(visible);
+            // console.log("ENTRIES----> ", entries);
             if (entries[0].isIntersecting) {
+                console.log("EFECTO");
+                nextPage();
                 setVisible(entries[0].isIntersecting)
-                observer.disconnect()
-                console.log("EJECUTA DISCONECT");
+                // observer.disconnect()
+                // console.log("EJECUTA DISCONECT");
             }
         }
         const observer = new IntersectionObserver(onChange, {
@@ -24,7 +26,6 @@ const LazyLoad = () => {
         console.log("LAZY LOAD RENDERIZADO");
 
     }, [])
-    console.log(visible);
 
     return (
 
@@ -40,6 +41,7 @@ const LazyLoad = () => {
                 </p>
                 :
                 null}
+
         </div>
 
     )
