@@ -1,13 +1,6 @@
 .listOfGifsContainer {
-    background-color: blueviolet;
-    align-items: center;
-    /* padding: 20px; */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 16px;
-    width: 80vw;
-    grid-template-rows: masonry;
-    grid-auto-flow: row dense;
-
+    display: flex;
     min-height: 150vh;
+    margin: 10px;
+    background-color: #088395;
 }

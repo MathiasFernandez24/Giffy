@@ -1,33 +1,54 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import useFetch from '../hooks/useFetch'
 import Gif from './Gif'
 import LazyLoad from './LazyLoad'
 import './ListOfGifs.css'
+import Masonry from 'react-masonry-css';
+import { SyncLoader } from 'react-spinners'
+
+function MasonryComponent(props) {
+    const breakpointColumnsObj = {
+        default: 4,
+        1100: 3,
+        700: 2,
+        500: 1
+    };
+
+    return (
+        <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="listOfGifsContainer"
+            columnClassName="my-masonry-grid_column"
+        >
+            {props.children}
+        </Masonry>
+    );
+}
+
+
 
 
 const ListOfGifs = ({ search }) => {
-    const [page, setPage] = useState(0)
-
-
-    const { listaGif, loading, error, handleCancelRequest, nextPage } = useFetch(search, page, setPage)
-
-
+    const { listaGif, debounceNextPage } = useFetch(search)
+    console.log(listaGif);
     return (
-        <>
-            <div className='listOfGifsContainer'>
+        <div>
+            {listaGif.length > 1 ?
+                <>
+                    <div className='listOfGifsContainer'>
+                        <MasonryComponent>
+                            {
+                                listaGif.map(({ title, url, id }) => <Gif title={title} url={url} id={id} key={id} />)
+                            }
+                        </MasonryComponent>
 
-                {/* <p>{error ? `error: ${error}` : `error: ok`}</p> */}
-                {/* <p>{loading ? `loading: ${loading}` : `loading: ${loading}`}</p> */}
-                {/* <button onClick={handleCancelRequest} >cancelar peticion</button> */}
-                {
-                    listaGif.map(({ title, url, id }) => <Gif title={title} url={url} key={id} />)
-                }
-            </div>
-            <br />
-            <button onClick={nextPage}>Mas resultados</button>
-            <LazyLoad nextPage={nextPage} />
-            <br />
-        </>
+                    </div>
+                    <LazyLoad debounceNextPage={debounceNextPage} />
+                </>
+                :
+                <SyncLoader />
+            }
+        </div>
     )
 }
 

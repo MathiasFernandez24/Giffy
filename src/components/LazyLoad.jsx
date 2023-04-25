@@ -1,29 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-const LazyLoad = ({ nextPage }) => {
+const LazyLoad = ({ debounceNextPage }) => {
     const [visible, setVisible] = useState(false)
     const elementRef = useRef()
 
 
     useEffect(() => {
         const onChange = (entries) => {
-            console.log(visible);
-            // console.log("ENTRIES----> ", entries);
+            // console.log(visible);
             if (entries[0].isIntersecting) {
-                console.log("EFECTO");
-                nextPage();
-                setVisible(entries[0].isIntersecting)
-                // observer.disconnect()
-                // console.log("EJECUTA DISCONECT");
+                // console.log("EFECTO");
+                debounceNextPage();
             }
         }
         const observer = new IntersectionObserver(onChange, {
-            rootMargin: '200px'
+            rootMargin: '600px'
         })
 
         observer.observe(elementRef.current)
 
-        console.log("LAZY LOAD RENDERIZADO");
+        // console.log("LAZY LOAD RENDERIZADO");
 
     }, [])
 

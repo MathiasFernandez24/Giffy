@@ -1,19 +1,19 @@
+import debounce from 'just-debounce-it'
 import { useEffect, useState } from 'react'
 import { API_KEY, API_URL } from '../constant'
 
-const useFetch = (search, page, setPage) => {
+const useFetch = (search) => {
     const [listaGif, setListaGif] = useState([])
     const [loading, setLoading] = useState(null)
     const [error, setError] = useState(null)
     const [controller, setController] = useState(null)
-    const [loadingNextPage, setLoadingNextPage] = useState(false)
-    // const [page, setPage] = useState(0)
-    const gifResults = 1
+    const [page, setPage] = useState(0.0)
+    const gifResults = 25
 
     const api_url = (pageIndex) => `${API_URL}search?${API_KEY}&q=${search}&limit=${gifResults}&offset=${pageIndex * gifResults}&rating=g&lang=en`
 
     useEffect(() => {
-        console.log("SIGUIENTE PAGINA");
+        // console.log("SIGUIENTE PAGINA", page);
         fetch(api_url(page))
             .then(r => r.json())
             .then(r => {
@@ -25,19 +25,20 @@ const useFetch = (search, page, setPage) => {
                         url: i.images.preview_webp.url,
                     }
                 })
+                console.log(resultGifs);
                 setListaGif(preGifs => preGifs.concat(resultGifs))
             })
-    }, [loadingNextPage])
+    }, [page])
 
 
 
     useEffect(() => {
         setListaGif([])
-        console.log("EFECTO FETCCH");
+        // console.log("EFECTO FETCCH");
         const abortController = new AbortController()
         setController(abortController)
 
-        // setPage(0)
+        setPage(0)
         fetch(api_url(0), { signal: abortController.signal })
             .then(r => r.json())
             .then(r => {
@@ -58,24 +59,14 @@ const useFetch = (search, page, setPage) => {
         return () => abortController.abort()
     }, [search])
 
-
-    const nextPage = () => {
-        console.log(page);
-        setPage(i => i + 1)
-        console.log(page);
-        console.log(loadingNextPage);
-        setLoadingNextPage(!loadingNextPage)
-        // setLoading
-
-    }
+    const debounceNextPage = debounce(() => setPage(i => i + 1), 500)
 
     const handleCancelRequest = () => {
         controller && controller.abort();
-        console.log("cancelar");
+        // console.log("cancelar");
         // setError("Request cancelled")
     }
-    console.log("---------------------------------");
-    return { listaGif, loading, error, handleCancelRequest, nextPage }
+    return { listaGif, loading, error, handleCancelRequest, debounceNextPage }
 }
 
 export default useFetch

@@ -1,6 +1,6 @@
 .searchResultsContainer {
-    width: 100vw;
-    background-color: aquamarine;
+    width: 100%;
+    min-height: 100vh;
     justify-content: center;
     align-items: center;
     text-align: center;
