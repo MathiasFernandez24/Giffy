@@ -1,8 +1,23 @@
-.container {}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    margin: 0px;
+    /* background-color: aqua; */
+}
 
 .image {
+    display: flex;
     border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid black;
-    height: 60vh;
+    max-width: 60vw;
+    max-height: 50vh;
+}
+
+@media (max-width:600px) {
+    .image {
+        width: 95%;
+        max-width: none;
+        height: max-content;
+    }
 }

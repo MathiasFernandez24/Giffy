@@ -3,7 +3,8 @@ import Trending from '../../components/Trending'
 
 const Home = () => {
     return (
-        <div>
+        <div >
+            {/* <div style={{ background: 'red' }}> */}
             <Trending />
         </div>
     )

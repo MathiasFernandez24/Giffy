@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.gifsContainer {
+    display: flex;
+    background-size: cover;
+    max-height: 300px;
+}
+
+@media (max-width:600px) {
+    .gifsContainer {
+        max-height: 180px;
+    }
+}

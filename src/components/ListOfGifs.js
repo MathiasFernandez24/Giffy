@@ -2,7 +2,7 @@ import React from 'react'
 import useFetch from '../hooks/useFetch'
 import Gif from './Gif'
 import LazyLoad from './LazyLoad'
-import './ListOfGifs.css'
+import styles from './ListOfGifs.module.css'
 import Masonry from 'react-masonry-css';
 import { SyncLoader } from 'react-spinners'
 
@@ -17,8 +17,8 @@ function MasonryComponent(props) {
     return (
         <Masonry
             breakpointCols={breakpointColumnsObj}
-            className="listOfGifsContainer"
-            columnClassName="my-masonry-grid_column"
+            className={styles.listOfGifsSearchContainer}
+        // columnClassName="my-masonry-grid_column"
         >
             {props.children}
         </Masonry>

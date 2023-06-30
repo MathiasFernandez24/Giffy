@@ -1,0 +1,7 @@
+.listOfGifsSearchContainer {
+    display: flex;
+    min-height: 150vh;
+    /* margin: 10px; */
+    /* padding: 10px; */
+    /* background-color: aqua; */
+}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { API_KEY, API_URL } from '../constant'
 import Gif from './Gif'
 import LazyLoad from './LazyLoad'
-import './ListOfGifs.css'
+import styles from './Trending.module.css'
 import Masonry from 'react-masonry-css';
 import { SyncLoader } from 'react-spinners'
 
@@ -16,7 +16,6 @@ function MasonryComponent(props) {
     return (
         <Masonry
             breakpointCols={breakpointColumnsObj}
-            className="listOfGifsContainer"
             columnClassName="my-masonry-grid_column"
         >
             {props.children}
@@ -35,7 +34,6 @@ const Trending = () => {
         fetch(apiUrl)
             .then((r) => r.json())
             .then((r) => {
-                // console.log(r)
                 const { data } = r
                 const resultGifs = data.map(i => {
                     return {
@@ -44,29 +42,29 @@ const Trending = () => {
                         url: i.images.downsized.url,
                     }
                 })
-                // console.log(trending)
                 setTrending(resultGifs)
                 setisLoading(true)
             })
     }, [])
 
     return (
-        <>
-            {/* <div className='listOfGifsContainer'> */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'center', margin: 10 }}>
-                {
-                    isLoading ?
-                        // <MasonryComponent>
-                        // {
-                        trending.map(({ title, url, id }) => <view style={{ display: 'flex', height: 200, width: 200, backgroundColor: '#088395', }}><Gif title={title} url={url} id={id} key={id} /></view>)
-                        // }
-                        // </MasonryComponent>
-                        :
-                        <SyncLoader />
-                }
-            </div>
+        <div className={styles.container}>
+            {
+                isLoading ?
+                    // <MasonryComponent>
+                    // {
+                    trending.map(({ title, url, id }) => (
+                        <div className={styles.gifsContainer}>
+                            <Gif title={title} url={url} id={id} key={id} />
+                        </div>
+                    ))
+                    // }
+                    // </MasonryComponent>
+                    :
+                    <SyncLoader color='white' />
+            }
             <LazyLoad />
-        </>
+        </div>
     )
 }
 
