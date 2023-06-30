@@ -12,6 +12,15 @@
     max-height: 300px;
 }
 
+.spinnerContainer {
+    display: flex;
+    /* flex: 1; */
+    height: 50vh;
+    justify-content: center;
+    align-items: center;
+    /* background-color: aqua; */
+}
+
 @media (max-width:600px) {
     .gifsContainer {
         max-height: 180px;

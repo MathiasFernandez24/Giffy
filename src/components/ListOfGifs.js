@@ -46,7 +46,7 @@ const ListOfGifs = ({ search }) => {
                     <LazyLoad debounceNextPage={debounceNextPage} />
                 </>
                 :
-                <SyncLoader />
+                <SyncLoader color='white' />
             }
         </div>
     )

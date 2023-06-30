@@ -51,17 +51,15 @@ const Trending = () => {
         <div className={styles.container}>
             {
                 isLoading ?
-                    // <MasonryComponent>
-                    // {
                     trending.map(({ title, url, id }) => (
                         <div className={styles.gifsContainer}>
                             <Gif title={title} url={url} id={id} key={id} />
                         </div>
                     ))
-                    // }
-                    // </MasonryComponent>
                     :
-                    <SyncLoader color='white' />
+                    <div className={styles.spinnerContainer}>
+                        <SyncLoader color='white' />
+                    </div>
             }
             <LazyLoad />
         </div>
